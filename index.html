@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Massage Ikaria - Healing Therapy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #c9a876;
+            --secondary-gold: #b8976a;
+            --warm-beige: #f5f2e8;
+            --soft-cream: #faf8f3;
+            --deep-brown: #8b7355;
+            --sage-green: #a8b5a0;
+            --soft-gray: #f8f6f0;
+            --text-dark: #4a3f35;
+            --accent-coral: #d4a574;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--soft-cream) 0%, var(--warm-beige) 100%);
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 248, 243, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 168, 118, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .header-scrolled {
+            background: rgba(250, 248, 243, 0.98);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 8px rgba(201, 168, 118, 0.3));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-gold);
+        }
+
+        @keyframes gentle-sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+
+        nav a {
+            color: var(--deep-brown);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--accent-coral));
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+        }
+
+        nav a:hover {
+            color: var(--primary-gold);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav {
+            gap: 1rem;
+        }
+
+       nav a {
+            font-size: 0.9rem;
+       }
+
+        .language-toggle {
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-coral));
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            margin-left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .language-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(201, 168, 118, 0.4);
+        }
+
+        .language-toggle::before {
+            content: '🌐';
+            font-size: 0.9rem;
+        }
+
+/* Default (for desktops/tablets) */
+.hero-section {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("{{ url_for('static', filename='images/logo.jpg') }}");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+/* For tablets */
+@media (max-width: 1024px) {
+    .hero-section {
+        background-size: contain;
+        background-position: top center;
+        background-repeat: no-repeat;
+    }
+}
+
+/* For small devices */
+@media (max-width: 768px) {
+    .hero-section {
+        background-size: contain;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-color: #F8F4E3; /* optional fallback behind image */
+    }
+}
+
+
+
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="gradient" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23c9a876;stop-opacity:0.05"/><stop offset="100%" style="stop-color:%23c9a876;stop-opacity:0"/></radialGradient></defs><circle cx="50" cy="50" r="50" fill="url(%23gradient)"/></svg>');
+    animation: float 20s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 60vh; /* Push content down below image */
+    gap: 1rem;
+    text-align: center;
+}
+
+/* Mobile tweak */
+@media (max-width: 768px) {
+    .hero-content {
+        padding-top: 0vh; /* Less space on phones so button is closer to logo */
+        gap: 0.5rem;
+    }
+
+    .hero-cta {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+
+/* Remove the hero-logo class styles since we're not using the img element anymore */
+.hero-logo {
+    display: none; /* Hide the image element since we're using it as background */
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 300;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow for better visibility */
+    letter-spacing: -0.02em;
+}
+
+.hero-content h2 {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); /* Add shadow for better readability */
+}
+
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary-gold); /* Light brown/gold background */
+    backdrop-filter: blur(15px);
+    color: white; /* White text for contrast */
+    padding: 1.2rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid var(--primary-gold);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    font-size: 1.1rem;
+}
+
+.hero-cta:hover {
+    background: rgba(201, 168, 118, 0.9); /* Slightly transparent on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border-color: var(--primary-gold);
+}
+
+
+
+
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float-random 15s linear infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: -2s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: -8s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float-random {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(-10px) rotate(240deg); }
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, var(--soft-cream) 0%, var(--warm-beige) 100%);
+            position: relative;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(201, 168, 118, 0.3) 0%, rgba(212, 165, 116, 0.2) 100%);
+            z-index: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .about-image:hover::before {
+            opacity: 0.5;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+@media (max-width: 1024px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .about-image {
+        display: block;
+        width: 100%;
+    }
+
+    .about-image img {
+        display: block;
+        width: 100%;
+        height: auto; /* Maintain natural aspect ratio */
+        object-fit: cover; /* Ensures nice crop, no stretching */
+        border-radius: 20px;
+    }
+}
+
+
+
+
+        .about-content {
+            animation: fade-in-left 1s ease-out;
+        }
+
+        @keyframes fade-in-left {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .about-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-gold), var(--accent-coral));
+            border-radius: 2px;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 8rem 2rem;
+            background: var(--soft-gray);
+            position: relative;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="gradient" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23c9a876;stop-opacity:0.05"/><stop offset="100%" style="stop-color:%23c9a876;stop-opacity:0"/></radialGradient></defs><circle cx="50" cy="50" r="50" fill="url(%23gradient)"/></svg>');
+            background-size: 300px 300px;
+            opacity: 0.3;
+        }
+
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .services-container h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-coral));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+            border-radius: 24px;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .service-image {
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+        .service-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .service-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            color: var(--text-dark);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--accent-coral) 100%);
+            color: white;
+            position: relative;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-container h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .contact-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .contact-item p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--warm-beige);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-gold), var(--accent-coral));
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-gold);
+        }
+
+
+/* Reviews Section Styles - Fixed to match website colors */
+.reviews-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, var(--primary-gold) 0%, var(--accent-coral) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.reviews-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.4;
+}
+
+.reviews-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.reviews-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.reviews-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.02em;
+}
+
+.google-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.google-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #4285f4, #34a853, #fbbc04, #ea4335);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+}
+
+.rating-display {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.rating-display:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.rating-number {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+.stars {
+    display: flex;
+    gap: 0.2rem;
+}
+
+.star {
+    color: #ffd700;
+    font-size: 1.2rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    animation: gentle-sparkle 3s ease-in-out infinite;
+}
+
+.star:nth-child(2) { animation-delay: 0.2s; }
+.star:nth-child(3) { animation-delay: 0.4s; }
+.star:nth-child(4) { animation-delay: 0.6s; }
+.star:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes gentle-sparkle {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.reviews-carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.reviews-track {
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.review-card {
+    min-width: 100%;
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, var(--soft-cream) 0%, var(--warm-beige) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.review-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(201, 168, 118, 0.1), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
+    100% { transform: translateX(100%); }
+}
+
+.review-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.review-quote {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    position: relative;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.review-quote::before,
+.review-quote::after {
+    content: '"';
+    font-size: 3rem;
+    color: var(--primary-gold);
+    opacity: 0.3;
+    position: absolute;
+    font-family: 'Playfair Display', serif;
+}
+
+.review-quote::before {
+    top: -15px;
+    left: -25px;
+}
+
+.review-quote::after {
+    bottom: -30px;
+    right: -25px;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.author-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-gold), var(--accent-coral));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(201, 168, 118, 0.4);
+    transition: transform 0.3s ease;
+}
+
+.author-avatar:hover {
+    transform: scale(1.05);
+}
+
+.author-info h4 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+}
+
+.author-info .review-date {
+    color: var(--deep-brown);
+    opacity: 0.8;
+    font-size: 0.85rem;
+}
+
+.review-stars {
+    display: flex;
+    justify-content: center;
+    gap: 0.2rem;
+    margin-bottom: 1rem;
+}
+
+.review-stars .star {
+    font-size: 1rem;
+}
+
+.google-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-gold), var(--accent-coral));
+    color: white; !important;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(201, 168, 118, 0.3);
+    transition: all 0.3s ease;
+}
+
+.google-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(201, 168, 118, 0.4);
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.carousel-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.carousel-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.indicator:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.indicator.active {
+    background: white;
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .reviews-section {
+        padding: 4rem 1rem;
+    }
+
+    .reviews-header h2 {
+        font-size: 2rem;
+    }
+
+    .review-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .review-quote {
+        font-size: 1rem;
+    }
+
+    .review-quote::before,
+    .review-quote::after {
+        font-size: 2.5rem;
+    }
+
+    .review-quote::before {
+        left: -15px;
+    }
+
+    .review-quote::after {
+        right: -15px;
+    }
+
+    .rating-display {
+        padding: 0.6rem 1.2rem;
+    }
+
+    .rating-number {
+        font-size: 1.3rem;
+    }
+
+    .stars .star {
+        font-size: 1rem;
+    }
+
+    .author-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+        /* Header Base Styles */
+#header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--background-color, #fff);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--deep-brown);
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+    transition: height 0.3s ease;
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: font-size 0.3s ease;
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+nav a {
+    color: var(--deep-brown);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-gold), var(--accent-coral));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-50%);
+}
+
+nav a:hover {
+    color: var(--primary-gold);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* Language Toggle */
+.language-toggle {
+    background: var(--primary-gold);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.language-toggle:hover {
+    background: var(--deep-brown);
+}
+
+/* Mobile Menu Button (hidden by default) */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--deep-brown);
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+    #header {
+        padding: 0.8rem 1.5rem;
+    }
+
+    .logo img {
+        height: 35px;
+    }
+
+    .logo-text {
+        font-size: 1.3rem;
+    }
+
+    nav {
+        gap: 1.5rem;
+    }
+
+    nav a {
+        font-size: 0.85rem;
+    }
+}
+
+/* Small Tablet / Large Mobile */
+@media (max-width: 768px) {
+    #header {
+        padding: 0.7rem 1rem;
+    }
+
+    .logo img {
+        height: 32px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
+    nav {
+        gap: 1rem;
+    }
+
+    nav a {
+        font-size: 0.8rem;
+        padding: 0.4rem 0;
+    }
+
+    .language-toggle {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 600px) {
+    #header {
+        padding: 0.5rem 1rem;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        gap: 0.3rem;
+    }
+
+    .logo img {
+        height: 28px;
+    }
+
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    nav {
+        gap: 0.8rem;
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        font-size: 0.75rem;
+        padding: 0.3rem 0;
+    }
+
+    .language-toggle {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 480px) {
+    #header {
+        padding: 0.5rem 0.8rem;
+    }
+
+    .logo img {
+        height: 25px;
+    }
+
+    .logo-text {
+        font-size: 0.9rem;
+    }
+
+    nav {
+        gap: 0.5rem;
+    }
+
+    nav a {
+        font-size: 0.7rem;
+        padding: 0.2rem 0;
+    }
+
+    .language-toggle {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* Alternative Mobile Menu (Hamburger Style) */
+@media (max-width: 480px) {
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    nav {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--background-color, #fff);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+
+    nav.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 0.8rem 0;
+        text-align: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    nav a:last-child {
+        border-bottom: none;
+    }
+
+    .language-toggle {
+        margin-top: 1rem;
+        align-self: center;
+    }
+}
+
+/* Sticky Header Size Adjustment */
+@media (min-width: 1025px) {
+    #header.scrolled {
+        padding: 0.5rem 2rem;
+    }
+
+    #header.scrolled .logo img {
+        height: 32px;
+    }
+
+    #header.scrolled .logo-text {
+        font-size: 1.3rem;
+    }
+}
+
+
+        .contact-item a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-item a:hover {
+    color: #007bff; /* Change to your preferred hover color */
+    text-decoration: underline;
+}
+
+/* Make the entire contact item clickable (optional) */
+.contact-item {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-2px);
+}
+
+        .contact-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+.contact-link:hover .contact-item {
+    cursor: pointer;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+    <a href="#home" class="logo">
+        <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Massage Ikaria Logo">
+        <span class="logo-text">Massage Ikaria</span>
+    </a>
+
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        ☰
+    </button>
+
+    <nav>
+        <a href="#home" data-en="Home" data-gr="Αρχική">Home</a>
+        <a href="#about" data-en="About" data-gr="Σχετικά">About</a>
+        <a href="#services" data-en="Services" data-gr="Υπηρεσίες">Services</a>
+        <a href="#services" data-en="A Journey" data-gr="Ταξίδι">A Journey</a>
+        <a href="#contact" data-en="Contact" data-gr="Επικοινωνία">Contact</a>
+        <a href="#reviews" data-en="Reviews" data-gr="Κριτικές">Reviews</a>
+        <a href="https://www.google.com/maps/dir//%CE%98%CE%B5%CF%81%CE%BC%CE%AC+833+00/@37.6219061,26.3032635,688m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x14bcfd4e1589a56d:0x976a0478522bdf85!2m2!1d26.304191!2d37.6236113?entry=ttu&g_ep=EgoyMDI1MDcwNy4wIKXMDSoASAFQAw%3D%3D" data-en="Location" data-gr="Τοποθεσία">Location</a>
+
+
+        <button class="language-toggle" onclick="toggleLanguage()">
+            <span id="lang-text">EL</span>
+        </button>
+    </nav>
+</header>
+    <section id="home" class="hero-section">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+        <a href="#services" class="hero-cta">
+            <span data-en="Discover Our Services" data-gr="Ανακαλύψτε τις Υπηρεσίες μας">Discover Our Services</span>
+            <span>→</span>
+        </a>
+    </div>
+</section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <div class="about-image scroll-reveal">
+                <img src="{{ url_for('static', filename='images/nikos_photo.jpg') }}" alt="Massage Therapy">
+            </div>
+            <div class="about-content scroll-reveal">
+                <h2 data-en="About Me" data-gr="Σχετικά με εμένα">About Me</h2>
+                <p data-en="My name is Nikos Diakos, and I come from the beautiful island of Ikaria. After studying physiotherapy in Athens and gaining experience in rehabilitation centers, sports teams, spas, and hotels, I decided to return to my homeland and create my own massage space in Therma." data-gr="Ονομάζομαι Νίκος Διάκος και είμαι από το όμορφο νησί της Ικαρίας. Μετά από σπουδές φυσικοθεραπείας στην Αθήνα και εμπειρία σε κέντρα αποκατάστασης, αθλητικές ομάδες, spa και ξενοδοχεία, αποφάσισα να επιστρέψω στον τόπο μου και να δημιουργήσω τον δικό μου χώρο μασάζ στα Θερμα.">My name is Nikos Diakos, and I come from the beautiful island of Ikaria. After studying physiotherapy in Athens and gaining experience in rehabilitation centers, sports teams, spas, and hotels, I decided to return to my homeland and create my own massage space in Therma.</p>
+                <p data-en="“Massage Ikaria” is more than just a therapy space. It is a sanctuary of tranquility, where every visitor is treated with respect, attention, and care. Here, through targeted massage techniques combined with a relaxing atmosphere and a personal approach, I help the body remember what it's like to be relieved." data-gr="Το “Massage Ikaria” είναι κάτι περισσότερο από ένας απλός χώρος θεραπείας. Είναι ένα καταφύγιο ηρεμίας, όπου ο κάθε επισκέπτης αντιμετωπίζεται με σεβασμό, προσοχή και φροντίδα. Εδώ, μέσα από στοχευμένες τεχνικές μασάζ, συνδυασμένες με ατμόσφαιρα χαλάρωσης και προσωπική προσέγγιση, βοηθώ το σώμα να αναζωογονηθεί">“Massage Ikaria” is more than just a therapy space. It is a sanctuary of tranquility, where every visitor is treated with respect, attention, and care. Here, through targeted massage techniques combined with a relaxing atmosphere and a personal approach, I help the body remember what it's like to be relieved.</p>
+                <p data-en="I believe that every person is unique and deserves individualized care. I have learned to listen to the body and tailor the treatment to its needs—whether it's chronic pain, tension from everyday stress, or simply the need for relaxation." data-gr="Πιστεύω πως κάθε άνθρωπος είναι διαφορετικός και χρειάζεται ξεχωριστή φροντίδα. Έχω μάθει να ακούω το σώμα και να προσαρμόζω τη θεραπεία στις ανάγκες του – είτε πρόκειται για χρόνιο πόνο, είτε για ένταση από το άγχος της καθημερινότητας, είτε απλώς για την ανάγκη χαλάρωσης.">I believe that every person is unique and deserves individualized care. I have learned to listen to the body and tailor the treatment to its needs—whether it's chronic pain, tension from everyday stress, or simply the need for relaxation.</p>
+                <p data-en="I will be happy to welcome you to my space so you can experience care, healing, and a reconnection with yourself." data-gr="Με χαρά θα σας υποδεχτώ στον χώρο μου για να ζήσετε μια εμπειρία φροντίδας, θεραπείας και επανασύνδεσης με τον εαυτό σας.">I will be happy to welcome you to my space so you can experience care, healing, and a reconnection with yourself.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="services-container">
+            <h2 class="scroll-reveal" data-en="Our Healing Services" data-gr="Οι Θεραπευτικές μας Υπηρεσίες">Our Healing Services</h2>
+            <div class="services-grid">
+
+               <div class="service-card">
+                   <div class="service-image" style="background-image: url('static/images/χαλαρωτικο-μασαζ-1.jpg');"></div>
+            <div class="service-content">
+                <h3 data-en="Relaxing Massage" data-gr="Χαλαρωτικό Μασάζ">Relaxing Massage</h3>
+                <p class="service-description" data-en="A gentle, soothing massage designed to melt away stress and tension, promoting deep relaxation and mental clarity." data-gr="Ένα απαλό, καταπραϋντικό μασάζ σχεδιασμένο να διαλύσει το άγχος και την ένταση, προάγοντας τη βαθιά χαλάρωση και τη διανοητική διαύγεια.">A gentle, soothing massage designed to melt away stress and tension, promoting deep relaxation and mental clarity.</p>
+            </div>
+                   <div class="service-price" data-en="Minutes: 30', 45', 60'" data-gr="Λεπτά: 30', 45', 60'">Minutes: 30', 45', 60'</div>
+            </div>
+
+                <div class="service-card">
+                   <div class="service-image" style="background-image: url('static/images/Deep-Tissue.png');"></div>
+            <div class="service-content">
+                <h3 data-en="Deep Tissue Massage" data-gr="Θεραπευτικό Μασάζ">Deep Tissue Massage</h3>
+                <p class="service-description" data-en="A therapeutic massage targeting deeper layers of muscle and connective tissue, using firm pressure and slow strokes to alleviate chronic pain, reduce inflammation, and break down adhesions." data-gr="Ένα θεραπευτικό μασάζ που στοχεύει στα βαθύτερα στρώματα των μυών και του συνδετικού ιστού, χρησιμοποιώντας σταθερή πίεση και αργές κινήσεις για να ανακουφίσει τον χρόνιο πόνο, να μειώσει τη φλεγμονή και να διαλύσει τις προσκολλήσεις.">A therapeutic massage targeting deeper layers of muscle and connective tissue, using firm pressure and slow strokes to alleviate chronic pain, reduce inflammation, and break down adhesions.</p>
+            </div>
+                    <div class="service-price" data-en="Minutes: 30', 45', 60'" data-gr="Λεπτά: 30', 45', 60'">Minutes: 30', 45', 60'</div>
+            </div>
+
+                <div class="service-card">
+                   <div class="service-image" style="background-image: url('static/images/sports.jpg');"></div>
+            <div class="service-content">
+                <h3 data-en="Sports Massage" data-gr="Αθλητικό Μασάζ">Sports Massage</h3>
+                <p class="service-description" data-en="A specialized massage designed for athletes and active individuals, focusing on preventing injuries, enhancing performance, and speeding recovery through targeted techniques that address specific muscle groups and movement patterns." data-gr="Ένα εξειδικευμένο μασάζ σχεδιασμένο για αθλητές και ενεργά άτομα, επικεντρώνοντας στην πρόληψη τραυματισμών, τη βελτίωση της απόδοσης και την επιτάχυνση της ανάκαμψης μέσω στοχευμένων τεχνικών που αντιμετωπίζουν συγκεκριμένες μυικές ομάδες και πρότυπα κίνησης.">A specialized massage designed for athletes and active individuals, focusing on preventing injuries, enhancing performance, and speeding recovery through targeted techniques that address specific muscle groups and movement patterns.</p>
+            </div>
+                    <div class="service-price" data-en="Minutes: 45', 60'" data-gr="Λεπτά: 45', 60'">Minutes: 30', 45', 60'</div>
+        </div>
+
+        <div class="service-card">
+                   <div class="service-image" style="background-image: url('static/images/candle_massage.jpeg');"></div>
+            <div class="service-content">
+                <h3 data-en="Candle Massage" data-gr="Μασάζ με κερί">Candle Massage</h3>
+                <p class="service-description" data-en="A luxurious massage using warm, melted candle wax that transforms into nourishing oils, deeply moisturizing your skin while providing therapeutic warmth and relaxation." data-gr="Ένα πολυτελές μασάζ με ζεστό, λιωμένο κερί που μεταμορφώνεται σε θρεπτικά έλαια, ενυδατώνοντας βαθιά το δέρμα σας παρέχοντας θεραπευτική ζεστασιά και χαλάρωση.">A luxurious massage using warm, melted candle wax that transforms into nourishing oils, deeply moisturizing your skin while providing therapeutic warmth and relaxation.</p>
+            </div>
+            <div class="service-price" data-en="Minutes: 30', 45', 60'" data-gr="Λεπτά: 30', 45', 60'">Minutes: 30', 45', 60'</div>
+
+        </div>
+
+        <div class="service-card">
+                   <div class="service-image" style="background-image: url('static/images/bamboo.jpg');"></div>
+            <div class="service-content">
+                <h3 data-en="Bamboo Massage" data-gr="Μασάζ με μπαμπού">Bamboo Massage</h3>
+                <p class="service-description" data-en="An innovative massage technique using heated bamboo canes to roll and knead muscles, providing deep pressure that improves circulation and releases muscle tension more effectively than traditional hands-on methods." data-gr="Μια καινοτόμος τεχνική μασάζ που χρησιμοποιεί θερμαινόμενα μπαμπού για να κυλίσει και να ζυμώσει τους μύες, παρέχοντας βαθιά πίεση που βελτιώνει την κυκλοφορία και απελευθερώνει τη μυική ένταση πιο αποτελεσματικά από τις παραδοσιακές μεθόδους.">An innovative massage technique using heated bamboo canes to roll and knead muscles, providing deep pressure that improves circulation and releases muscle tension more effectively than traditional hands-on methods.</p>
+            </div>
+            <div class="service-price" data-en="Minutes: 30', 45', 60'" data-gr="Λεπτά: 30', 45', 60'">Minutes: 30', 45', 60'</div>
+
+        </div>
+
+                 <div class="service-card">
+                   <div class="service-image" style="background-image: url('static/images/aromatotherapy.jpeg');"></div>
+            <div class="service-content">
+                <h3 data-en="Aromatherapy Massage" data-gr="Αρωματοθεραπείας Μασάζ">Aromatherapy Massage</h3>
+                <p class="service-description" data-en="A holistic massage combining gentle techniques with carefully selected essential oils to enhance physical and emotional well-being. Different oil blends target specific needs such as stress relief, energy boost, or mood enhancement." data-gr="Ένα ολιστικό μασάζ που συνδυάζει απαλές τεχνικές με προσεκτικά επιλεγμένα αιθέρια έλαια για να ενισχύσει τη σωματική και συναισθηματική ευεξία. Διαφορετικά μείγματα ελαίων στοχεύουν σε συγκεκριμένες ανάγκες όπως ανακούφιση από το άγχος, ενέργεια ή βελτίωση της διάθεσης.">A holistic massage combining gentle techniques with carefully selected essential oils to enhance physical and emotional well-being. Different oil blends target specific needs such as stress relief, energy boost, or mood enhancement.</p>
+            </div>
+                     <div class="service-price" data-en="Minutes: 30', 45', 60'" data-gr="Λεπτά: 30', 45', 60'">Minutes: 30', 45', 60'</div>
+
+        </div>
+
+
+        <div class="service-card">
+                   <div class="service-image" style="background-image: url('static/images/neck_massage.jpeg');"></div>
+            <div class="service-content">
+                <h3 data-en="Back/Neck Massage" data-gr="Πλάτης/Αυχένα Μασάζ">Back/Neck Massage</h3>
+                <p class="service-description" data-en="A focused treatment targeting the back and neck areas, ideal for relieving tension from desk work, poor posture, and daily stress. Helps alleviate headaches, shoulder stiffness, and upper back pain." data-gr="Μια εστιασμένη θεραπεία που στοχεύει στις περιοχές της πλάτης και του αυχένα, ιδανική για την ανακούφιση της έντασης από τη δουλειά στο γραφείο, τη λανθασμένη στάση και το καθημερινό άγχος. Βοηθά στην ανακούφιση των κεφαλαλγιών, της δυσκαμψίας των ώμων και του πόνου στην άνω πλάτη.">A focused treatment targeting the back and neck areas, ideal for relieving tension from desk work, poor posture, and daily stress. Helps alleviate headaches, shoulder stiffness, and upper back pain.</p>
+            </div>
+            <div class="service-price" data-en="Minutes: 30', 45'" data-gr="Λεπτά: 30', 45'">Minutes: 30', 45'</div>
+
+        </div>
+
+        <div class="service-card">
+                   <div class="service-image" style="background-image: url('static/images/face_massage.jpeg');"></div>
+            <div class="service-content">
+                <h3 data-en="Head/Face Massage" data-gr="Κεφαλής/Προσώπου Μασάζ">Head/Face Massage</h3>
+                <p class="service-description" data-en="A rejuvenating massage focusing on the scalp, temples, and facial muscles, promoting circulation, reducing headaches, and providing deep relaxation. Helps improve skin tone and relieves eye strain and jaw tension." data-gr="Ένα αναζωογονητικό μασάζ που επικεντρώνεται στο τριχωτό της κεφαλής, τους κροτάφους και τους μυς του προσώπου, προάγοντας την κυκλοφορία, μειώνοντας τις κεφαλαλγίες και παρέχοντας βαθιά χαλάρωση. Βοηθά στη βελτίωση του τόνου του δέρματος και ανακουφίζει την κόπωση των ματιών και την ένταση των γνάθων.">A rejuvenating massage focusing on the scalp, temples, and facial muscles, promoting circulation, reducing headaches, and providing deep relaxation. Helps improve skin tone and relieves eye strain and jaw tension.</p>
+            </div>
+            <div class="service-price" data-en="Minutes: 30' 45'" data-gr="Λεπτά: 30' 45'">Minutes: 30' 45'</div>
+
+        </div>
+
+        <div class="service-card">
+                   <div class="service-image" style="background-image: url('static/images/hand_massage.jpeg');"></div>
+            <div class="service-content">
+                <h3 data-en="Hand Massage" data-gr="Χεριών Μασάζ">Hand Massage</h3>
+                <p class="service-description" data-en="A therapeutic treatment for hands and wrists, perfect for those who work extensively with their hands or suffer from repetitive strain. Improves flexibility, reduces arthritis pain, and enhances circulation in fingers and joints." data-gr="Μια θεραπευτική αγωγή για χέρια και καρπούς, ιδανική για όσους εργάζονται εκτενώς με τα χέρια τους ή υποφέρουν από επαναλαμβανόμενη καταπόνηση. Βελτιώνει την ευελιξία, μειώνει τον πόνο της αρθρίτιδας και ενισχύει την κυκλοφορία στα δάχτυλα και τις αρθρώσεις.">A therapeutic treatment for hands and wrists, perfect for those who work extensively with their hands or suffer from repetitive strain. Improves flexibility, reduces arthritis pain, and enhances circulation in fingers and joints.</p>
+            </div>
+            <div class="service-price" data-en="Minutes: 20', 30'" data-gr="Λεπτά: 20', 30'">Minutes: 20', 30'</div>
+
+        </div>
+
+        <div class="service-card">
+                   <div class="service-image" style="background-image: url('static/images/foot_massage.jpeg');"></div>
+            <div class="service-content">
+                <h3 data-en="Foot Massage" data-gr="Ποδιών Μασάζ">Foot Massage</h3>
+                <p class="service-description" data-en="A revitalizing massage for tired, aching feet incorporating reflexology techniques. Stimulates pressure points that correspond to different body systems, promoting overall wellness while relieving foot pain and improving circulation." data-gr="Ένα αναζωογονητικό μασάζ για κουρασμένα, πονεμένα πόδια που ενσωματώνει τεχνικές αντανακλαστικής. Διεγείρει σημεία πίεσης που αντιστοιχούν σε διαφορετικά συστήματα του σώματος, προάγοντας τη συνολική ευεξία ενώ ανακουφίζει τον πόνο των ποδιών και βελτιώνει την κυκλοφορία.">A revitalizing massage for tired, aching feet incorporating reflexology techniques. Stimulates pressure points that correspond to different body systems, promoting overall wellness while relieving foot pain and improving circulation.</p>
+            </div>
+            <div class="service-price" data-en="Minutes: 30', 45'" data-gr="Λεπτά: 30', 45'">Minutes: 30', 45'</div>
+
+        </div>
+
+        <div class="service-card">
+                   <div class="service-image" style="background-image: url('static/images/butto_massage.jpeg');"></div>
+            <div class="service-content">
+                <h3 data-en="Butto (Cellulite) Massage" data-gr="Κυτταρίτιδας Μασάζ">Butto (Cellulite) Massage</h3>
+                <p class="service-description" data-en="A specialized anti-cellulite massage using specific techniques to break down fat deposits, improve lymphatic drainage, and enhance skin texture. Combines deep tissue work with targeted movements to reduce the appearance of cellulite." data-gr="Ένα εξειδικευμένο μασάζ κατά της κυτταρίτιδας που χρησιμοποιεί συγκεκριμένες τεχνικές για να διαλύσει τις λιπώδεις αποθήκες, να βελτιώσει τη λεμφική αποστράγγιση και να ενισχύσει την υφή του δέρματος. Συνδυάζει βαθύ μασάζ ιστών με στοχευμένες κινήσεις για να μειώσει την εμφάνιση της κυτταρίτιδας.">A specialized anti-cellulite massage using specific techniques to break down fat deposits, improve lymphatic drainage, and enhance skin texture. Combines deep tissue work with targeted movements to reduce the appearance of cellulite.</p>
+            </div>
+            <div class="service-price" data-en="Minutes: 30'" data-gr="Λεπτά: 30'">Minutes: 30'</div>
+
+        </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- About Section -->
+    <section id="article" class="about-section">
+        <div class="about-container">
+            <div class="about-content scroll-reveal">
+                <h2 data-en="A Journey into Healing" data-gr="Ταξίδι στη Θεραπεία">A Journey into Healing</h2>
+
+                <p data-en="Soft music surrounds the room that Nikos has set up as a therapy studio: a simple massage bed, a few candles, subdued lighting, and the room is decorated in beautiful shades of green. Here, all the senses can calm down — but I'm a little tense as Nikos works intensively on my long back muscles. Now I feel that he has found the source of my pain… and now the healing can begin." data-gr="Απαλή μουσική διαχέεται στο δωμάτιο που ο Νίκος έχει δημιουργήσει ως στούντιο θεραπείας: ένα απλό κρεβάτι μασάζ, λίγα κεριά, χαμηλός φωτισμός και το δωμάτιο είναι διακοσμημένο σε όμορφες αποχρώσεις του πράσινου. Εδώ όλες οι αισθήσεις μπορούν να ηρεμήσουν, αλλά εγώ έχω λίγη ένταση καθώς ο Νίκος δουλεύει εντατικά πάνω στους μύες της πλάτης μου. Τώρα νιώθω ότι έχει βρει την πηγή του πόνου μου... Και αυτή τη στιγμή μπορεί να ξεκινήσει η θεραπεία και η χαλάρωση.">Soft music surrounds the room that Nikos has set up as a therapy studio: a simple massage bed, a few candles, subdued lighting, and the room is decorated in beautiful shades of green. Here, all the senses can calm down — but I'm a little tense as Nikos works intensively on my long back muscles. Now I feel that he has found the source of my pain… and now the healing can begin.</p>
+
+                <p data-en="At the end of the session, Nikos stretches my muscles before saying in a low voice: 'We are finished, take your time.' And indeed: I need a little time to return to the here and now. I came to his therapy studio with severe back pain, could hardly move, but now — after this one-hour session — I can walk upright, and my movements are becoming more fluid again." data-gr="Στο τέλος της συνεδρίας, τεντώνει τους μύες μου πριν μου πει με χαμηλή φωνή: 'Τελειώσαμε, πάρτε τον χρόνο σας'. Και πράγματι: χρειάζομαι λίγο χρόνο για να επιστρέψω στο εδώ και τώρα. Ήρθα στον χώρο του με έντονο πόνο στην πλάτη, δεν μπορούσα να κινηθώ, αλλά τώρα – μετά από αυτή τη συνεδρία μιας ώρας – μπορώ να σταθώ όρθια και να περπατήσω. Οι κινήσεις μου γίνονται και πάλι πιο ομαλές και ελεύθερες.">At the end of the session, Nikos stretches my muscles before saying in a low voice: "We are finished, take your time." And indeed: I need a little time to return to the here and now. I came to his therapy studio with severe back pain, could hardly move, but now — after this one-hour session — I can walk upright, and my movements are becoming more fluid again.</p>
+
+                <p data-en="'How are you doing this? How could you find the source of my pain so quickly?' I ask Nikos, as we are sitting together after the session. Nikos smiles broadly and is visibly pleased with the compliment." data-gr="«Πώς το κάνεις αυτό; Πώς μπόρεσες να βρεις την πηγή του πόνου μου τόσο γρήγορα;» τον ρωτάω, καθώς καθόμαστε μαζί μετά την θεραπεία. Ο Νίκος χαμογελάει πλατιά και είναι εμφανώς ευχαριστημένος με το κομπλιμέντο.">"How are you doing this? How could you find the source of my pain so quickly?" I ask Nikos, as we are sitting together after the session. Nikos smiles broadly and is visibly pleased with the compliment.</p>
+
+                <p data-en="'You know,' he says, 'in my profession as a physiotherapist, I see it as my task to help people try to get well again. I want to offer them the possibility for their body to continue working after the therapy. Against this background, a superficial massage with some feel-good effects is not part of my program. Every body is different and requires a different approach.'" data-gr="«Ξέρετε», λέει, «στο επάγγελμά μου ως φυσιοθεραπευτής, θεωρώ καθήκον μου να βοηθήσω τους ανθρώπους να προσπαθήσουν να γίνουν και πάλι καλά. Θέλω να τους προσφέρω τη δυνατότητα το σώμα τους να συνεχίσει να εργάζεται μετά τη θεραπευτική αγωγή. Σε αυτό το πλαίσιο, δεν είναι το μόνο μου πρόγραμμα ένα επιφανειακό μασάζ που εστιάζει στα ευχάριστα αποτελέσματα. Κάθε σώμα είναι διαφορετικό και χρειάζεται άλλη προσέγγιση».">"You know," he says, "in my profession as a physiotherapist, I see it as my task to help people try to get well again. I want to offer them the possibility for their body to continue working after the therapy. Against this background, a superficial massage with some feel-good effects is not part of my program. Every body is different and requires a different approach."</p>
+
+                <p data-en="I'm a bit surprised to hear these words of deep conviction from a young man. After all, they reflect a deep understanding of the human being — and a thoughtful vision of what he wants to do with his life." data-gr="Ξαφνιάζομαι, ακούγοντας αυτά τα λόγια βαθιάς πεποίθησης από έναν νέο άνδρα. Αλλά τελικά, είναι μια έκφραση βαθιάς κατανόησης του ανθρώπου και μια βαθιά σκέψη για το τι θέλει να κάνει με τη ζωή του.">I'm a bit surprised to hear these words of deep conviction from a young man. After all, they reflect a deep understanding of the human being — and a thoughtful vision of what he wants to do with his life.</p>
+
+                <p data-en="Nikos grew up in Xylosirtis, a small village on Ikaria. He is the son of the local priest and, together with his brother, enjoyed a peaceful and protected childhood in that place. There was a lot of freedom, playing outside with friends, and school was a pleasure since there were only 20 pupils — all of different ages." data-gr="Ο Νίκος μεγάλωσε στον Ξυλοσύρτη, ένα μικρό χωριό της Ικαρίας. Είναι γιος του τοπικού ιερέα και μαζί με τον αδελφό του, απόλαυσε μια ειρηνική και προστατευμένη παιδική ηλικία σε αυτό το μέρος. Υπήρχε μεγάλη ελευθερία με το παιχνίδι έξω με φίλους και το δημοτικό σχολείο ήταν μια ευχαρίστηση καθώς σ' όλο το σχολείο υπήρχαν μόνο 20 μαθητές - όλοι διαφορετικής ηλικίας.">Nikos grew up in Xylosirtis, a small village on Ikaria. He is the son of the local priest and, together with his brother, enjoyed a peaceful and protected childhood in that place. There was a lot of freedom, playing outside with friends, and school was a pleasure since there were only 20 pupils — all of different ages.</p>
+
+                <p data-en="Later, he joined the high school in Agios Kirykos and started playing basketball — a sport that brings many young people on the island together." data-gr="Αργότερα γράφτηκε στο γυμνάσιο στον Άγιο Κήρυκο και άρχισε να παίζει μπάσκετ, το παιχνίδι που φέρνει κοντά τόσους πολλούς νέους σε αυτό το νησί.">Later, he joined the high school in Agios Kirykos and started playing basketball — a sport that brings many young people on the island together.</p>
+
+                <p data-en="But even from an early age, Nikos was interested in how the body works and how its healing processes function. He read a lot about the interplay between exercise, nutrition, and mental health, and slowly the idea grew in him that he would like to work in this field. So, he decided to become a physiotherapist." data-gr="Αλλά ήδη από νεαρή ηλικία, ο Νίκος ενδιαφερόταν για το πώς λειτουργεί το σώμα και πώς λειτουργούν οι θεραπευτικές του διαδικασίες. Διάβασε πολλά για την αλληλεπίδραση μεταξύ άσκησης, φαγητού και ψυχικής υγείας και σιγά-σιγά μεγάλωσε μέσα του η ιδέα ότι θα ήθελε να δουλέψει σε αυτόν τον τομέα. Έτσι, αποφάσισε να γίνει φυσιοθεραπευτής.">But even from an early age, Nikos was interested in how the body works and how its healing processes function. He read a lot about the interplay between exercise, nutrition, and mental health, and slowly the idea grew in him that he would like to work in this field. So, he decided to become a physiotherapist.</p>
+
+                <p data-en="Nikos set off to Athens to study physiotherapy — and he loved it from the very first moment. He knew he was in the right place at the right time." data-gr="Ο Νίκος ξεκίνησε για την Αθήνα για να σπουδάσει φυσιοθεραπεία – και την αγάπησε από την πρώτη στιγμή. Ήξερε ότι ήταν στο σωστό μέρος τη σωστή στιγμή.">Nikos set off to Athens to study physiotherapy — and he loved it from the very first moment. He knew he was in the right place at the right time.</p>
+
+                <p data-en="Later, he worked in large therapy centers and hotels — enjoying both the work and the ongoing learning process. He is interested in different therapeutic approaches and how he can integrate them into his own practice. His dream is to travel to countries like India and Thailand to learn on-site… and perhaps one day he will set sail and do just that." data-gr="Αργότερα εργάστηκε σε μεγάλα θεραπευτικά κέντρα και ξενοδοχεία – απολαμβάνοντας τη δουλειά και τη συνεχή μάθηση. Ενδιαφέρεται για διαφορετικές θεραπευτικές προσεγγίσεις και πώς μπορεί να τις ενσωματώσει στη δουλειά του. Το όνειρό του είναι να ταξιδέψει σε άλλες χώρες, όπως η Ινδία και η Ταϊλάνδη για να μάθει επί τόπου και ίσως μια μέρα να αποφασίσει να το κάνει.">Later, he worked in large therapy centers and hotels — enjoying both the work and the ongoing learning process. He is interested in different therapeutic approaches and how he can integrate them into his own practice. His dream is to travel to countries like India and Thailand to learn on-site… and perhaps one day he will set sail and do just that.</p>
+
+                <p data-en="But in the meantime, he had decided to return to Ikaria and open his own therapy studio in Therma. The COVID pandemic changed everything. As he was not allowed to work, Nikos spent time planning how he could continue his profession on his island in the future." data-gr="Στο μεταξύ, όμως, είχε αποφασίσει να επιστρέψει στην Ικαρία και να ανοίξει το δικό του στούντιο θεραπείας στα Θέρμα. Βέβαια, η πανδημία Covid άλλαξε τα σχέδιά του. Παρόλο που δεν του επιτρεπόταν να εργαστεί λόγω των συνθηκών, σχεδίαζε πώς θα μπορούσε να συνεχίσει τη δουλειά του στην Ικαρία στο μέλλον.">But in the meantime, he had decided to return to Ikaria and open his own therapy studio in Therma. The COVID pandemic changed everything. As he was not allowed to work, Nikos spent time planning how he could continue his profession on his island in the future.</p>
+
+                <p data-en="By coincidence, he learned that a small studio in Therma was available for rent. It took him just one night to make the decision — and then he signed the contract. At that time, he had no clear vision of how 'this' would evolve, but Nikos is the kind of person who thinks things through and then acts — he sees opportunities, not obstacles." data-gr="Κατά σύμπτωση έμαθε ότι ένας μικρός χώρος στα Θέρμα ήταν προς ενοικίαση. Του πήρε μόνο μια νύχτα για να πάρει την απόφαση και στη συνέχεια υπέγραψε το συμβόλαιο. Εκείνη την εποχή, δεν είχε σαφή εικόνα, πώς θα εξελισσόταν «Αυτό», αλλά ο Νίκος είναι ένας άνθρωπος που σκέφτεται τα πράγματα και μετά προσπαθεί – βλέπει ευκαιρίες και όχι εμπόδια.">By coincidence, he learned that a small studio in Therma was available for rent. It took him just one night to make the decision — and then he signed the contract. At that time, he had no clear vision of how "this" would evolve, but Nikos is the kind of person who thinks things through and then acts — he sees opportunities, not obstacles.</p>
+
+                <p data-en="The rental contract was the first step in settling again on Ikaria. That was back in 2022, and since then, his small therapy studio in Therma, on the main street, has grown steadily. Nikos works year-round, so he is not just a 'typical summer entrepreneur,' coming to the island only for the summer season and the tourists, then leaving again." data-gr="Το μισθωτήριο συμβόλαιο ήταν το πρώτο βήμα για να εγκατασταθεί ξανά στην Ικαρία. Αυτό είχε γίνει το 2022 και από τότε, το μικρό του στούντιο θεραπείας στα Θέρμα, στον κεντρικό δρόμο, αναπτύσσεται όμορφα. Ο Νίκος δουλεύει όλο το χρόνο, οπότε δεν είναι μόνο ένας «τυπικός καλοκαιρινός επιχειρηματίας», που έρχεται στο νησί για την καλοκαιρινή περίοδο και τους τουρίστες και μετά φεύγει ξανά.">The rental contract was the first step in settling again on Ikaria. That was back in 2022, and since then, his small therapy studio in Therma, on the main street, has grown steadily. Nikos works year-round, so he is not just a "typical summer entrepreneur," coming to the island only for the summer season and the tourists, then leaving again.</p>
+
+                <p data-en="He came back for good — enjoying the fact that he could reconnect with his old school friends and even rejoin the local basketball team." data-gr="Επέστρεψε για τα καλά, απολαμβάνοντας το γεγονός ότι μπορούσε να επανασυνδεθεί με τους παλιούς του φίλους από το σχολείο.">He came back for good — enjoying the fact that he could reconnect with his old school friends and even rejoin the local basketball team.</p>
+
+                <p data-en="Nikos sees his future on this island. He had his share of 'big city life,' but now he enjoys the slower rhythm of the island. Of course, he returns to Athens regularly, because he continues to study and attends seminars. These visits also allow him to stay in touch with former clients, so he can work with them again when needed." data-gr="Ο Νίκος βλέπει το μέλλον του στην Ικαρία. Πήρε την εμπειρία του από τη «ζωή της μεγάλης πόλης», αλλά τώρα απολαμβάνει τον πιο ήσυχο ρυθμό του νησιού. Φυσικά, επιστρέφει στην Αθήνα, γιατί συνεχίζει να μαθαίνει και παρακολουθεί σεμινάρια. Αυτές οι διαμονές του δίνουν επίσης την ευκαιρία να παραμείνει σε επαφή με «πρώην» θεραπευόμενους, ώστε να μπορεί να εργαστεί ξανά μαζί τους.">Nikos sees his future on this island. He had his share of "big city life," but now he enjoys the slower rhythm of the island. Of course, he returns to Athens regularly, because he continues to study and attends seminars. These visits also allow him to stay in touch with former clients, so he can work with them again when needed.</p>
+
+                <p data-en="So, over the last few years, there have been no regrets. Nikos has not only succeeded in building his little therapy studio, but he has also gained a solid reputation among the people of Ikaria." data-gr="Έτσι, τα τελευταία χρόνια δεν το έχει μετανιώσει, και ο Νίκος όχι μόνο κατάφερε να χτίσει το μικρό του στούντιο θεραπείας, αλλά απέκτησε επίσης καλή φήμη μεταξύ των Ικαριωτών.">So, over the last few years, there have been no regrets. Nikos has not only succeeded in building his little therapy studio, but he has also gained a solid reputation among the people of Ikaria.</p>
+
+                <p data-en="These are the moments of greatest happiness for him — because they are the proof that he is 'doing a good job': helping people to heal their bodies… and he could wish for nothing more." data-gr="Αυτές είναι οι στιγμές της μεγαλύτερης ευτυχίας για εκείνον – γιατί αυτή είναι η απόδειξη ότι «κάνει καλή δουλειά»: Να βοηθάει τους ανθρώπους να θεραπεύσουν το σώμα τους... Και δεν θα μπορούσε να εύχεται τίποτα περισσότερο.">These are the moments of greatest happiness for him — because they are the proof that he is "doing a good job": helping people to heal their bodies… and he could wish for nothing more.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="contact-container">
+        <h2 class="scroll-reveal" data-en="Get In Touch" data-gr="Επικοινωνήστε μαζί μας">Get In Touch</h2>
+        <p class="scroll-reveal" data-en="Ready to begin your wellness journey? Contact us to book your session or learn more about our services." data-gr="Έτοιμοι να ξεκινήσετε το ταξίδι ευεξίας σας; Επικοινωνήστε μαζί μας για να κλείσετε συνεδρία ή να μάθετε περισσότερα για τις υπηρεσίες μας.">Ready to begin your wellness journey? Contact us to book your session or learn more about our services.</p>
+        <div class="contact-grid">
+            <!-- Phone -->
+            <a href="tel:+306978865838" class="contact-link" target="_blank" rel="noopener noreferrer">
+    <div class="contact-item scroll-reveal">
+        <span class="contact-icon"><i class="fas fa-phone-alt"></i></span>
+        <h3 data-en="Contact Phone Number" data-gr="Τηλέφωνο Επικοινωνίας">Contact Phone Number</h3>
+        <p>(+30) 6978 865 838</p>
+    </div>
+</a>
+            <a href="mailto:massage.ikaria22@gmail.com" class="contact-link">
+    <div class="contact-item scroll-reveal">
+        <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+        <h3>Email</h3>
+        <p>massage.ikaria22@gmail.com</p>
+    </div>
+</a>
+
+            <a href="https://www.facebook.com/profile.php?id=100083451695766&mibextid=wwXIfr" class="contact-link" target="_blank" rel="noopener noreferrer">
+    <div class="contact-item scroll-reveal">
+        <span class="contact-icon"><i class="fab fa-facebook"></i></span>
+        <h3>Facebook</h3>
+        <p>Massage Ikaria</p>
+    </div>
+</a>
+
+            <a href="https://www.instagram.com/massage_ikaria?igsh=MXN5b2ZycGNxcXp3MA==" class="contact-link" target="_blank" rel="noopener noreferrer">
+    <div class="contact-item scroll-reveal">
+        <span class="contact-icon"><i class="fab fa-instagram"></i></span>
+        <h3>Instagram</h3>
+        <p>Massage_Ikaria</p>
+    </div>
+</a>
+
+
+        </div>
+    </div>
+</section>
+
+
+    <section id="reviews" class="reviews-section">
+        <div class="reviews-container">
+            <div class="reviews-header">
+                <h2 data-en="What Our Clients Say" data-gr="Τι λένε οι πελάτες μας">What Our Clients Say</h2>
+            </div>
+
+            <div class="reviews-carousel">
+                <div class="reviews-track" id="reviewsTrack">
+
+                    <div class="review-card">
+                        <div class="review-content">
+                            <div class="review-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <p class="review-quote" data-en="The massage at Nikos is incredibly intuitive and relaxing, yet professional, and I felt very light and free in my body after them. Nikos feels the client's body type very well and it is essential that the massage facilitates and does not hinder the flow in the body" data-gr="Το μασάζ στο Νίκο είναι απίστευτα διαισθητικό και χαλαρωτικό, αλλά επαγγελματικό, και ένιωσα πολύ ανάλαφρη και ελεύθερη στο σώμα μου μετά από αυτά. Ο Νίκος αισθάνεται πολύ καλά τον σωματότυπο του πελάτη και είναι απαραίτητο το μασάζ να διευκολύνει και να μην εμποδίζει τη ροή στο σώμα">The massage at Nikos is incredibly intuitive and relaxing, yet professional, and I felt very light and free in my body after them. Nikos feels the client's body type very well and it is essential that the massage facilitates and does not hinder the flow in the body</p>
+                            <div class="review-author">
+                                <div class="author-avatar">A</div>
+                                <div class="author-info">
+                                    <h4>ANITA DZENE</h4>
+                                </div>
+                            </div>
+                            <span class="google-badge">
+                                <a href="https://www.google.com/search?q=Massage%20Ikaria%20%CE%91%CE%BE%CE%B9%CE%BF%CE%BB%CE%BF%CE%B3%CE%AE%CF%83%CE%B5%CE%B9%CF%82&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNLA0NDA1Nrc0MzIAEiaGJubmGxgZXzGq-yYWFyempyp4ZicWZSYqnJt4bt-5nef2n9sNxJvPrTvffG7ruZ3nmxaxEqsSAJgg74hvAAAA&rldimm=10910537962079641477&tbm=lcl&cs=1&hl=el&sa=X&ved=0CAcQ5foLahcKEwjQxKbSgLOOAxUAAAAAHQAAAAAQCg#lkt=LocalPoiReviews&arid=ChZDSUhNMG9nS0VJQ0FnSUNuNE56bmZ3EAE" target="_blank" class="google-badge">
+                                <i class="fab fa-google"></i>
+                                Google Review
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-content">
+                            <div class="review-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <p class="review-quote" data-en="Nikos has strong and competent hands, and is a very nice guy. After a series of 4 massages, my back problems were greatly alleviated.Highly recommended." data-gr="Ο Νίκος έχει δυνατά και ικανά χέρια και είναι πολύ καλός τύπος. Μετά από μια σειρά από 4 μασάζ, τα προβλήματα στην πλάτη μου ανακουφίστηκαν πολύ.Συνιστάται ανεπιφύλακτα."> Nikos has strong and competent hands, and is a very nice guy. After a series of 4 massages, my back problems were greatly alleviated. Highly recommended.</p>
+                            <div class="review-author">
+                                <div class="author-avatar">M</div>
+                                <div class="author-info">
+                                    <h4>Martino Masotto</h4>
+                                </div>
+                            </div>
+                            <span class="google-badge">
+                                <a href="https://www.google.com/search?q=Massage%20Ikaria%20%CE%91%CE%BE%CE%B9%CE%BF%CE%BB%CE%BF%CE%B3%CE%AE%CF%83%CE%B5%CE%B9%CF%82&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNLA0NDA1Nrc0MzIAEiaGJubmGxgZXzGq-yYWFyempyp4ZicWZSYqnJt4bt-5nef2n9sNxJvPrTvffG7ruZ3nmxaxEqsSAJgg74hvAAAA&rldimm=10910537962079641477&tbm=lcl&cs=1&hl=el&sa=X&ved=0CAcQ5foLahcKEwjQxKbSgLOOAxUAAAAAHQAAAAAQCg#lkt=LocalPoiReviews&arid=ChZDSUhNMG9nS0VJQ0FnSUNuNE56bmZ3EAE" target="_blank" class="google-badge">
+                                <i class="fab fa-google"></i>
+                                Google Review
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="review-card">
+                        <div class="review-content">
+                            <div class="review-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <p class="review-quote" data-en="Visited Massage Ikaria during my holiday, as I was troubled by my regular lower back pain. It was the first time I experienced a massage session and I was absolutely impressed.
+
+Nikos is very polite and was very patient with me (especially since it was my first time for massage). He helped me relax and feel comfortable. He had a very gentle but firm touch and quickly identified which areas are troubling me. While he focused on these areas, he ensured that the whole back area is equally worked on.
+
+I was very satisfied and impressed by his service and I would strongly recommend him." data-gr="Επισκέφτηκα το Massage Ikaria κατά τη διάρκεια των διακοπών μου, καθώς με προβλημάτιζε ο συνηθισμένος πόνος στη μέση. Ήταν η πρώτη φορά που βίωσα μια συνεδρία μασάζ και εντυπωσιάστηκα απόλυτα.
+
+Ο Νίκος είναι πολύ ευγενικός και ήταν πολύ υπομονετικός μαζί μου (ειδικά αφού ήταν η πρώτη μου φορά για μασάζ). Με βοήθησε να χαλαρώσω και να νιώσω άνετα. Είχε ένα πολύ απαλό αλλά σταθερό άγγιγμα και γρήγορα εντόπισε ποιες περιοχές με προβληματίζουν. Ενώ εστίασε σε αυτές τις περιοχές, φρόντισε να δουλέψει εξίσου ολόκληρη η περιοχή της πλάτης.
+
+Έμεινα πολύ ικανοποιημένος και εντυπωσιασμένος από την υπηρεσία του και θα τον συνιστούσα ανεπιφύλακτα.">Visited Massage Ikaria during my holiday, as I was troubled by my regular lower back pain. It was the first time I experienced a massage session and I was absolutely impressed.
+
+Nikos is very polite and was very patient with me (especially since it was my first time for massage). He helped me relax and feel comfortable. He had a very gentle but firm touch and quickly identified which areas are troubling me. While he focused on these areas, he ensured that the whole back area is equally worked on.
+
+I was very satisfied and impressed by his service and I would strongly recommend him.</p>
+                            <div class="review-author">
+                                <div class="author-avatar">A</div>
+                                <div class="author-info">
+                                    <h4>Alexios Doukas</h4>
+                                </div>
+                            </div>
+                            <span class="google-badge">
+                                <a href="https://www.google.com/search?q=Massage%20Ikaria%20%CE%91%CE%BE%CE%B9%CE%BF%CE%BB%CE%BF%CE%B3%CE%AE%CF%83%CE%B5%CE%B9%CF%82&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNLA0NDA1Nrc0MzIAEiaGJubmGxgZXzGq-yYWFyempyp4ZicWZSYqnJt4bt-5nef2n9sNxJvPrTvffG7ruZ3nmxaxEqsSAJgg74hvAAAA&rldimm=10910537962079641477&tbm=lcl&cs=1&hl=el&sa=X&ved=0CAcQ5foLahcKEwjQxKbSgLOOAxUAAAAAHQAAAAAQCg#lkt=LocalPoiReviews&arid=ChZDSUhNMG9nS0VJQ0FnSUNuNE56bmZ3EAE" target="_blank" class="google-badge">
+                                <i class="fab fa-google"></i>
+                                Google Review
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-content">
+                            <div class="review-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <p class="review-quote" data-en="Nikos was one of the best surprises on my Ikaria trip! I didn’t expect to find a massage therapist at all on Ikaria and had little to no expectations.
+He knows exactly how much pressure is needed and just feels what your body needs. One of the only massages I ever had where the therapist doesn’t do a copy-paste technique.
+I highly recommend him, you won’t be disappointed.
+All the best to you Nikos, you are absolutely amazing" data-gr="Ο Νίκος ήταν μια από τις καλύτερες εκπλήξεις στο ταξίδι μου στην Ικαρία! Δεν περίμενα να βρω καθόλου θεραπευτή μασάζ στην Ικαρία και είχα ελάχιστες έως καθόλου προσδοκίες.
+Ξέρει ακριβώς πόση πίεση χρειάζεται και απλώς αισθάνεται τι χρειάζεται το σώμα σας. Ένα από τα μοναδικά μασάζ που έκανα ποτέ όπου ο θεραπευτής δεν κάνει τεχνική αντιγραφής-επικόλλησης.
+Τον προτείνω ανεπιφύλακτα, δεν θα απογοητευτείτε.
+Να σαι καλά Νίκο, είσαι απίστευτα καταπληκτικός">Nikos was one of the best surprises on my Ikaria trip! I didn’t expect to find a massage therapist at all on Ikaria and had little to no expectations.
+He knows exactly how much pressure is needed and just feels what your body needs. One of the only massages I ever had where the therapist doesn’t do a copy-paste technique.
+I highly recommend him, you won’t be disappointed.
+All the best to you Nikos, you are absolutely amazing</p>
+                            <div class="review-author">
+                                <div class="author-avatar">C</div>
+                                <div class="author-info">
+                                    <h4>C V</h4>
+                                </div>
+                            </div>
+                            <span class="google-badge">
+                                <a href="https://www.google.com/search?q=Massage%20Ikaria%20%CE%91%CE%BE%CE%B9%CE%BF%CE%BB%CE%BF%CE%B3%CE%AE%CF%83%CE%B5%CE%B9%CF%82&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNLA0NDA1Nrc0MzIAEiaGJubmGxgZXzGq-yYWFyempyp4ZicWZSYqnJt4bt-5nef2n9sNxJvPrTvffG7ruZ3nmxaxEqsSAJgg74hvAAAA&rldimm=10910537962079641477&tbm=lcl&cs=1&hl=el&sa=X&ved=0CAcQ5foLahcKEwjQxKbSgLOOAxUAAAAAHQAAAAAQCg#lkt=LocalPoiReviews&arid=ChZDSUhNMG9nS0VJQ0FnSUNuNE56bmZ3EAE" target="_blank" class="google-badge">
+                                <i class="fab fa-google"></i>
+                                Google Review
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="review-card">
+                        <div class="review-content">
+                            <div class="review-stars">
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <p class="review-quote" data-en="Nikos has a gift for healing with his hands. He has impressive massage techniques that left me feeling balanced everywhere. He was kind and attentive, making me feel at ease from the moment I stepped inside. I highly recommend paying a visit to Nikos if you are on the island!" data-gr="Ο Νίκος έχει ένα χάρισμα να θεραπεύει με τα χέρια του. Έχει εντυπωσιακές τεχνικές μασάζ που με έκαναν να νιώθω ισορροπία παντού. Ήταν ευγενικός και προσεκτικός, με έκανε να νιώθω άνετα από τη στιγμή που μπήκα μέσα. Συνιστώ ανεπιφύλακτα να επισκεφθείτε τον Νίκο αν βρίσκεστε στο νησί!">Nikos has a gift for healing with his hands. He has impressive massage techniques that left me feeling balanced everywhere. He was kind and attentive, making me feel at ease from the moment I stepped inside. I highly recommend paying a visit to Nikos if you are on the island!</p>
+                            <div class="review-author">
+                                <div class="author-avatar">J</div>
+                                <div class="author-info">
+                                    <h4>Jacqueline Lee-Tam</h4>
+                                </div>
+                            </div>
+                            <span class="google-badge">
+                                <a href="https://www.google.com/search?q=Massage%20Ikaria%20%CE%91%CE%BE%CE%B9%CE%BF%CE%BB%CE%BF%CE%B3%CE%AE%CF%83%CE%B5%CE%B9%CF%82&rflfq=1&num=20&stick=H4sIAAAAAAAAAONgkxIxNLA0NDA1Nrc0MzIAEiaGJubmGxgZXzGq-yYWFyempyp4ZicWZSYqnJt4bt-5nef2n9sNxJvPrTvffG7ruZ3nmxaxEqsSAJgg74hvAAAA&rldimm=10910537962079641477&tbm=lcl&cs=1&hl=el&sa=X&ved=0CAcQ5foLahcKEwjQxKbSgLOOAxUAAAAAHQAAAAAQCg#lkt=LocalPoiReviews&arid=ChZDSUhNMG9nS0VJQ0FnSUNuNE56bmZ3EAE" target="_blank" class="google-badge">
+                                <i class="fab fa-google"></i>
+                                Google Review
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="carousel-indicators" id="indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
+                <span class="indicator" data-slide="4"></span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentLanguage = 'en';
+
+        // Language toggle functionality
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'gr' : 'en';
+            const langText = document.getElementById('lang-text');
+            langText.textContent = currentLanguage === 'en' ? 'EL' : 'EN';
+
+            // Update all translatable elements
+            const translatableElements = document.querySelectorAll('[data-en][data-gr]');
+            translatableElements.forEach(element => {
+                if (currentLanguage === 'en') {
+                    element.textContent = element.getAttribute('data-en');
+                } else {
+                    element.textContent = element.getAttribute('data-gr');
+                }
+            });
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax effect for hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroBackground = document.querySelector('.hero-background');
+            if (heroBackground) {
+                heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+
+        // Reviews Carousel Functionality
+        class ReviewsCarousel {
+            constructor() {
+                this.track = document.getElementById('reviewsTrack');
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.indicators = document.querySelectorAll('.indicator');
+                this.currentSlide = 0;
+                this.totalSlides = 5;
+                this.autoPlayInterval = null;
+
+                this.init();
+                this.startAutoPlay();
+            }
+
+            init() {
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => this.goToSlide(index));
+                });
+
+                // Pause auto-play on hover
+                this.track.addEventListener('mouseenter', () => this.stopAutoPlay());
+                this.track.addEventListener('mouseleave', () => this.startAutoPlay());
+            }
+
+            updateSlide() {
+                const translateX = -this.currentSlide * 100;
+                this.track.style.transform = `translateX(${translateX}%)`;
+
+                // Update indicators
+                this.indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentSlide);
+                });
+            }
+
+            nextSlide() {
+                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                this.updateSlide();
+            }
+
+            prevSlide() {
+                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                this.updateSlide();
+            }
+
+            goToSlide(slideIndex) {
+                this.currentSlide = slideIndex;
+                this.updateSlide();
+            }
+
+            startAutoPlay() {
+                this.stopAutoPlay(); // Clear any existing interval
+                this.autoPlayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, 5000); // Change slide every 5 seconds
+            }
+
+            stopAutoPlay() {
+                if (this.autoPlayInterval) {
+                    clearInterval(this.autoPlayInterval);
+                    this.autoPlayInterval = null;
+                }
+            }
+        }
+
+        // Initialize carousel when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new ReviewsCarousel();
+        });
+
+        // Add some interactive effects
+        document.querySelectorAll('.review-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Mobile Menu Toggle
+function toggleMobileMenu() {
+    const nav = document.querySelector('nav');
+    nav.classList.toggle('active');
+}
+
+// Sticky Header Scroll Effect
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('header');
+    if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+// Close mobile menu when clicking on a link
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        const nav = document.querySelector('nav');
+        nav.classList.remove('active');
+    });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+    const nav = document.querySelector('nav');
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+
+    if (!nav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+        nav.classList.remove('active');
+    }
+});
+
+// Handle window resize
+window.addEventListener('resize', function() {
+    const nav = document.querySelector('nav');
+    if (window.innerWidth > 480) {
+        nav.classList.remove('active');
+    }
+});
+    </script>
+</body>
+</html>
