@@ -481,6 +481,19 @@
             position: relative;
         }
 
+        /* When Greek is active and on smaller screens */
+@media (max-width: 768px) {
+    body.greek-active .services-container h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body.greek-active .services-container h2 {
+        font-size: 1.3rem;
+    }
+}
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -1790,22 +1803,23 @@ All the best to you Nikos, you are absolutely amazing</p>
     <script>
         let currentLanguage = 'en';
 
-        // Language toggle functionality
-        function toggleLanguage() {
-            currentLanguage = currentLanguage === 'en' ? 'gr' : 'en';
-            const langText = document.getElementById('lang-text');
-            langText.textContent = currentLanguage === 'en' ? 'EL' : 'EN';
+// Language toggle functionality
+function toggleLanguage() {
+    currentLanguage = currentLanguage === 'en' ? 'gr' : 'en';
+    const langText = document.getElementById('lang-text');
+    langText.textContent = currentLanguage === 'en' ? 'EL' : 'EN';
 
-            // Update all translatable elements
-            const translatableElements = document.querySelectorAll('[data-en][data-gr]');
-            translatableElements.forEach(element => {
-                if (currentLanguage === 'en') {
-                    element.textContent = element.getAttribute('data-en');
-                } else {
-                    element.textContent = element.getAttribute('data-gr');
-                }
-            });
-        }
+    // Update all translatable elements
+    const translatableElements = document.querySelectorAll('[data-en][data-gr]');
+    translatableElements.forEach(element => {
+        element.textContent = element.getAttribute(`data-${currentLanguage}`);
+    });
+
+    // Update body class based on current language
+    document.body.classList.toggle('greek-active', currentLanguage === 'gr');
+    document.body.classList.toggle('english-active', currentLanguage === 'en');
+}
+
 
         // Header scroll effect
         window.addEventListener('scroll', () => {
