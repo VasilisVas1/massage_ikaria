@@ -221,7 +221,11 @@
     height: 100%;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="gradient" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:%23c9a876;stop-opacity:0.05"/><stop offset="100%" style="stop-color:%23c9a876;stop-opacity:0"/></radialGradient></defs><circle cx="50" cy="50" r="50" fill="url(%23gradient)"/></svg>');
     animation: float 20s ease-in-out infinite;
-    z-index: 2;
+    /*z-index: 2;*/
+
+    
+    position: absolute;
+    z-index: -1; /* or 1, but lower than hero-content */
 }
 
 @keyframes float {
@@ -238,6 +242,9 @@
     padding-top: 60vh; /* Push content down below image */
     gap: 1rem;
     text-align: center;
+
+    position: relative;
+    z-index: 5;
 }
 
 /* Mobile tweak */
@@ -304,6 +311,10 @@
     border: 2px solid var(--primary-gold);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     font-size: 1.1rem;
+
+
+     position: relative;
+    z-index: 10;
 }
 
 .hero-cta:hover {
@@ -1614,7 +1625,7 @@ nav a:hover::after {
 <section id="contact" class="contact-section">
     <div class="contact-container">
         <h2 class="scroll-reveal" data-en="Get In Touch" data-gr="Επικοινωνήστε μαζί μου">Get In Touch</h2>
-        <p class="scroll-reveal" data-en="Ready to begin your wellness journey? Contact us to book your session or learn more about our services." data-gr="Έτοιμοι να ξεκινήσετε το ταξίδι ευεξίας σας; Επικοινωνήστε μαζί μας για να κλείσετε συνεδρία ή να μάθετε περισσότερα για τις υπηρεσίες μας.">Ready to begin your wellness journey? Contact us to book your session or learn more about our services.</p>
+        <p class="scroll-reveal" data-en="Ready to begin your wellness journey? Contact me to book your session or learn more about my services." data-gr="Έτοιμοι να ξεκινήσετε το ταξίδι ευεξίας σας; Επικοινωνήστε μαζί μου για να κλείσετε συνεδρία ή να μάθετε περισσότερα για τις υπηρεσίες μου.">Ready to begin your wellness journey? Contact me to book your session or learn more about my services.</p>
         <div class="contact-grid">
             <!-- Phone -->
             <a href="tel:+306978865838" class="contact-link" target="_blank" rel="noopener noreferrer">
