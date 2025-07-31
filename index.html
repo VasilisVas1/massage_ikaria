@@ -1855,7 +1855,11 @@ function toggleLanguage() {
     // Update all translatable elements
     const translatableElements = document.querySelectorAll('[data-en][data-gr]');
     translatableElements.forEach(element => {
-        element.textContent = element.getAttribute(`data-${currentLanguage}`);
+    element.textContent = element.getAttribute(`data-${currentLanguage}`);
+
+    // Close the mobile menu
+    const nav = document.querySelector('nav');
+    nav.classList.remove('active');
     });
 
     // Update body class based on current language
